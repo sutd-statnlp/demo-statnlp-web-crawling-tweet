@@ -11,7 +11,7 @@ class ServerService {
     this.server = this.servers[0]
   }
   getCrawlingTweetEndpoint () {
-    return this.getEndpoint() + '/api/tweets/keyword'
+    return this.getEndpoint() + '/api/tweets/stream'
   }
   getEndpoint () {
     return this.httpSchema + this.server.ip + this.port

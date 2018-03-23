@@ -25,8 +25,12 @@ export default {
   mutations: {
     crawlTweets (state, payload) {
       let url = ServerService.getCrawlingTweetEndpoint()
-      url += '/' + payload.keyword
-      axios.get(url).then(response => {
+      let formData = new FormData()
+      formData.append('keyword', payload.keyword)
+      formData.append('location', payload.location)
+      formData.append('userId', payload.userId)
+      formData.append('language', payload.language)
+      axios.post(url, formData).then(response => {
         state.tweetResponse = DataUtil.responseToTweetResponse(response, ServerService.getDataEndpoint())
       }).catch(function (error) {
         console.log(error)
