@@ -124,7 +124,8 @@ export default {
         dom: 'Bfrtip',
         buttons: [
           'copy', 'csv', 'excel', 'pdf', 'print'
-        ]
+        ],
+        destroy: true
       })
     },
     loadCsv () {

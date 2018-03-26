@@ -5,7 +5,7 @@ class ServerService {
 
     this.servers = [{
       name: 'StatNLP 0',
-      ip: '127.0.0.1',
+      ip: '172.18.240.110',
       status: false
     }]
     this.server = this.servers[0]
