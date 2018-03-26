@@ -30,6 +30,7 @@ export default {
       formData.append('location', payload.location)
       formData.append('userId', payload.userId)
       formData.append('language', payload.language)
+      formData.append('maxMinute', payload.maxMinute)
       axios.post(url, formData).then(response => {
         state.tweetResponse = DataUtil.responseToTweetResponse(response, ServerService.getDataEndpoint())
       }).catch(function (error) {

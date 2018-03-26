@@ -1,0 +1,68 @@
+<div class="row">
+  <div class="col-md-12">
+    <form v-on:submit.prevent="onSubmit">
+      <div class="row">
+        <div class="col-md-6">
+          <div>
+            <label for="keyword">Keyword</label>
+            <input type="text" class="form-control" id="keyword" v-model="payload.keyword" placeholder="Keyword" />
+          </div>
+          <div>
+            <label for="language">Language</label>
+            <input type="text" class="form-control" id="language" v-model="payload.language" placeholder="Language" />
+          </div>
+          <div>
+            <label for="userId">UserID</label>
+            <input type="text" class="form-control" id="userId" v-model="payload.userId" placeholder="UserID" />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div id="googleMap"></div>
+          <input type="text" hidden class="form-control" id="location" v-model="payload.location" placeholder="Location" />
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-md-12">
+          <p>
+            <button class="btn btn-primary" type="submit">Crawl Tweets</button>
+          </p>
+          <div>
+            <div class="progress" v-show="getTweetResponse.isStreaming">
+              <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemax="100" style="width: 100%"></div>
+            </div>
+            <p></p>
+            <button type="button" class="btn btn-secondary" v-on:click="stopCrawling()" v-show="getTweetResponse.isStreaming">STOP</button>
+            <a :href="getTweetResponse.link" class="btn btn-outline-primary" target="_blank" v-show="getTweetResponse.link">Download Full Tweet CSV</a>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class="row mt-4">
+      <div class="col-md-12">
+        <div class="table-responsive">
+          <table id="table-tweet" class="table table-striped display">
+            <caption>Tweets</caption>
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">ID</th>
+                <th scope="col">UserName</th>
+                <th scope="col">CreatedAt</th>
+                <th scope="col">Language</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(item, index) in getTweets" v-bind:key="index">
+                <th scope="row">{{index}}</th>
+                <td>{{item.ID}}</td>
+                <td>{{item.UserName}}</td>
+                <td>{{item.CreatedAt}}</td>
+                <td>{{item.Lang}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
